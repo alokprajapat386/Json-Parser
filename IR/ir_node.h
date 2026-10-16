@@ -40,13 +40,6 @@ typedef struct {
     int size;
 } IRArray;
 
-static int tab_count=0;
-void print_tabs(){
-    for(int i=0; i<tab_count; i++){
-        printf("    ");
-    }
-}
-
 
 IRObject *createObject(){
     IRObject* object = (IRObject*)malloc(sizeof(IRObject));
@@ -102,71 +95,71 @@ IRPair* createPair(char *key, IRValue *value){
     return pair;
 }   
 
-void printIRPair(IRPair* pair);
-void printIRObject(IRObject * object);
-void printIRValue(IRValue *value);
-void printIRArray(IRArray *array);
+// void printIRPair(IRPair* pair);
+// void printIRObject(IRObject * object);
+// void printIRValue(IRValue *value);
+// void printIRArray(IRArray *array);
 
-void printIRPair(IRPair* pair){
-    printf("%s : ", pair->key);
-    printIRValue(&pair->value);
-}
+// void printIRPair(IRPair* pair){
+//     printf("%s : ", pair->key);
+//     printIRValue(&pair->value);
+// }
 
-void printIRObject(IRObject * object){
-    bool is_first=true;
-    // print_tabs();
-    printf("{\n");
-    tab_count++;
+// void printIRObject(IRObject * object){
+//     bool is_first=true;
+//     // print_tabs();
+//     printf("{\n");
+//     tab_count++;
 
-    for(int i=0; i<object->size; i++){
-        if(!is_first){
-            printf(",\n");
-        }
-        is_first=false;
-        print_tabs();
-        printIRPair(object->elements[i]);
-    }
-    printf("\n");
-    tab_count--;
-    print_tabs();
+//     for(int i=0; i<object->size; i++){
+//         if(!is_first){
+//             printf(",\n");
+//         }
+//         is_first=false;
+//         print_tabs();
+//         printIRPair(object->elements[i]);
+//     }
+//     printf("\n");
+//     tab_count--;
+//     print_tabs();
 
-    printf("}");
-}
+//     printf("}");
+// }
 
 
-void printIRValue(IRValue *value){
-    switch (value->type){
-        case IRTYPE_ARRAY:
-            printIRArray((IRArray*)value->value);
-            break;
-        case IRTYPE_OBJECT:
-            printIRObject((IRObject*)value->value);
-            break;
-        default:
-            printf("%s", (char*)value->value);
+// void printIRValue(IRValue *value){
+//     switch (value->type){
+//         case IRTYPE_ARRAY:
+//             printIRArray((IRArray*)value->value);
+//             break;
+//         case IRTYPE_OBJECT:
+//             printIRObject((IRObject*)value->value);
+//             break;
+//         default:
+//             printf("%s", (char*)value->value);
             
-    }
-}
+//     }
+// }
 
-void printIRArray(IRArray *array){
-    bool is_first=true;
-    // print_tabs();
-    printf("[\n");
+// void printIRArray(IRArray *array){
+//     bool is_first=true;
+//     // print_tabs();
+//     printf("[\n");
 
-    tab_count++;
-    for(int i=0; i<array->size; i++){
-        if(!is_first){
-            printf(",\n");
-        }
-        is_first=false;
-        print_tabs();
-        printIRValue(array->elements[i]);
-    }
-    printf("\n");
-    tab_count--;
-    print_tabs();
-    printf("]");
-}
+//     tab_count++;
+//     for(int i=0; i<array->size; i++){
+//         if(!is_first){
+//             printf(",\n");
+//         }
+//         is_first=false;
+//         print_tabs();
+//         printIRValue(array->elements[i]);
+//     }
+//     printf("\n");
+//     tab_count--;
+//     print_tabs();
+//     printf("]");
+// }
 
 
 
